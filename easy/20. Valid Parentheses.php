@@ -30,6 +30,26 @@ function isValid($s)
     return empty($s);
 }
 
+// most faster solution
+function isValid2($s)
+{
+    $map = ['(' => ')', '[' => ']', '{' => '}'];
+    $mapRevert = array_flip($map);
+    $len = strlen($s);
+    $stack = [];
+    for($i = 0; $i < $len; $i++){
+        if (isset($map[$s[$i]])){
+            $stack[] = $s[$i];
+        }else{
+            if ($mapRevert[$s[$i]] != array_pop($stack)){
+                return false;
+            }
+        }
+    }
+    return empty($stack);
+}
+
+
 
 $arTests = [
     "(}{)" => false,
