@@ -9,10 +9,9 @@ class Solution
     public function minTimeToVisitAllPoints(array $points): int
     {
         $res = 0;
-        foreach ($points as $i => $point) {
-            if ($points[$i-1] === null)
-                continue;
-            $res += max(abs($points[$i-1][0] - $point[0]), abs($points[$i-1][1] - $point[1]));
+        $l = count($points);
+        for ($i = 1; $i < $l; $i++){
+            $res += max(abs($points[$i-1][0] - $points[$i][0]), abs($points[$i-1][1] - $points[$i][1]));
         }
         return $res;
     }
